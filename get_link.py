@@ -1,4 +1,3 @@
-import re
 import threading
 
 import requests
@@ -37,14 +36,11 @@ def main(category, off_plan_flag):
         link_obj = {
             "link": []
         }
-        if category == "to-rent":
-            link_obj["frequency"] = []
         if not li_tag_list:
             break
-        link_list = []
         for item in li_tag_list:
             link = item.find_all("a", attrs={"aria-label": "Listing link"})[0]["href"]
-            link_list.append(link)
+            link_obj["link"].append(link)
 
 
         df = pandas.DataFrame(link_obj)
